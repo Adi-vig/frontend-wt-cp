@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f0f4f8, #56a5ff);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #2a2a2a;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.column {
+  display: inline-block;
+  margin: 5px;
+}
+
+.square {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: -1px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+  color: #000; /* Default text color */
+}
+
+/* Square states */
+.square-white {
+  background-color: #ffffff;
+}
+
+.square-grey {
+  background-color: #e0e0e0;
+}
+
+.square-red {
+  background-color: #f44336 !important;
+  color: white;
+}
+
+.square:hover {
+  background-color: #ffffa0 !important;
+}
+
+/* Input fields inside squares */
+.square input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  font-size: 1.4rem;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  outline: none;
+  color: inherit; /* Inherit text color from the square */
+}
+
+/* Disabled input */
+input:disabled {
+  color: black;
+  font-weight: bold;
+}
+
+/* Table and button styles */
+td {
+  padding: 0;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  margin: 10px 5px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Alert box */
+.alert {
+  padding: 16px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.closebtn {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+/* Game container */
+.game-container {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+.difficulty-select {
+  margin-top: 10px;
+}
+
+button-container {
+  margin-top: 20px;
+}
+
+/* Default (Light) Theme */
+body.theme-light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.theme-light .square {
+  background-color: #ffffff;
+  border-color: #ccc;
+  color: #000;
+}
+
+body.theme-light h1 {
+  color: #000000; /* Dark text for light theme */
+}
+
+body.theme-light .square-grey {
+  background-color: #cccccc;
+}
+
+body.theme-light .square input {
+  color: #000; /* Dark text inside input fields for light theme */
+}
+
+body.theme-light .game-container {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.theme-light button {
+  background-color: #007bff;
+  color: white;
+}
+
+table.theme-light .square {
+  border: 1px solid #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Dark Theme */
+body.theme-dark h1 {
+  color: #ffffff; /* White text for dark theme */ 
+}
+body.theme-dark {
+  background-color: #121212;
+  background: linear-gradient(135deg, #8d8c8c, #1e1e1e);
+  color: #ffffff;
+}
+
+body.theme-dark .square {
+  background-color: #333333;
+  border-color: #555;
+  color: #ffffff; /* White text in dark theme */
+}
+
+body.theme-dark .square-grey {
+  background-color: #434343;
+}
+
+body.theme-dark .square input {
+  color: #ffffff; /* White text inside input fields for dark theme */
+}
+
+body.theme-dark .game-container {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+body.theme-dark button {
+  background-color: #5c5c5c;
+  color: #ffffff;
+}
+
+table.theme-dark .square {
+  border: 1px solid #555;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dracula Theme */
+
+body.theme-dracula h1 {
+  color: #ff95f8; /* Light text for Dracula theme */
+}
+body.theme-dracula {
+  /* background-color: #282a36; */
+  background: linear-gradient(135deg, #e9d6ff, #301c51);
+  color: #f8f8f2;
+}
+
+body.theme-dracula .square {
+  background-color: #44475a;
+  border-color: #6272a4;
+  color: #f8f8f2; /* Light color for Dracula theme */
+}
+
+body.theme-dracula .square-grey {
+  background-color: #6272a4;
+}
+
+body.theme-dracula .square input {
+  color: #ffa3f6; /* Light text inside input fields for Dracula theme */
+}
+
+body.theme-dracula .game-container {
+  background-color: #252940;
+  color: #f8f8f2;
+}
+
+body.theme-dracula button {
+  background-color: #6f76a2;
+  color: #f8f8f2;
+}
+
+table.theme-dracula .square {
+  border: 1px solid #6272a4;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Bash Theme */
+body.theme-bash {
+  background-color: #002b36;
+  background: linear-gradient(135deg, #c0fedd, #0c2f0d);
+  color: #839496;
+}
+
+body.theme-bash h1 {
+  color: #00ff6a; /* Light text for bash theme */
+}
+
+body.theme-bash .square {
+  background-color: #073642;
+  border-color: #586e75;
+  color: #93a1a1; /* Lighter text in bash theme */
+}
+
+body.theme-bash .square-grey {
+  background-color: #586e75;
+}
+
+body.theme-bash .square input {
+  color: #93a1a1; /* Light grey-greenish text inside input fields */
+}
+
+body.theme-bash .game-container {
+  background-color: #073642;
+  color: #93a1a1;
+}
+
+body.theme-bash button {
+  background-color: #010b0d;
+  color: #93a1a1;
+}
+
+table.theme-bash .square {
+  border: 1px solid #586e75;
+}
+
+/* Hover effects */
+.square:hover {
+  background-color: #ffffa0 !important;
+}
+
+body.theme-dark .square:hover {
+  background-color: #4a4a00 !important;
+}
+
+body.theme-dracula .square:hover {
+  background-color: #6272a4 !important;
+}
+
+body.theme-bash .square:hover {
+  background-color: #586e75 !important;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+body.theme-dark button:hover {
+  background-color: #333;
+}
+
+body.theme-dracula button:hover {
+  background-color: #6272a4;
+}
+
+body.theme-bash button:hover {
+  background-color: #586e75;
+}
