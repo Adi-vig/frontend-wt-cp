@@ -1,16 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+/* Only center the content wrapper, not the entire body */
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
   margin: 0;
   padding: 0;
+  position: relative;
+  z-index: 0;
+  background: none !important; /* Remove direct gradient here */
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
   background: linear-gradient(135deg, #f0f4f8, #56a5ff);
-  min-height: 100vh;
+  background-attachment: fixed;
+}
+/* Make navbar full width */
+.navbar {
+  width: 100%;
+}
+
+/* Center only the content area */
+.content-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: calc(100vh - 70px); /* Adjust for navbar height */
+  padding: 20px;
 }
+
+
 
 h1 {
   text-align: center;
@@ -198,7 +222,7 @@ table.theme-light .square {
 body.theme-dark h1 {
   color: #ffffff; /* White text for dark theme */ 
 }
-body.theme-dark {
+body.theme-dark::before {
   background-color: #121212;
   background: linear-gradient(135deg, #8d8c8c, #1e1e1e);
   color: #ffffff;
@@ -248,7 +272,7 @@ table.theme-dark .square {
 body.theme-dracula h1 {
   color: #ff95f8; /* Light text for Dracula theme */
 }
-body.theme-dracula {
+body.theme-dracula::before {
   /* background-color: #282a36; */
   background: linear-gradient(135deg, #e9d6ff, #301c51);
   color: #f8f8f2;
@@ -293,7 +317,7 @@ table.theme-dracula .square {
 
 
 /* Bash Theme */
-body.theme-bash {
+body.theme-bash::before{
   background-color: #002b36;
   background: linear-gradient(135deg, #c0fedd, #0c2f0d);
   color: #839496;
@@ -362,4 +386,190 @@ body.theme-dracula button:hover {
 
 body.theme-bash button:hover {
   background-color: #586e75;
+}
+
+
+
+
+
+
+
+/* Common */
+
+
+.navbar-text {
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+
+/* Light Theme */
+body.theme-light .navbar {
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom: 1px solid #ccc;
+}
+body.theme-light .navbar a,
+body.theme-light .navbar-brand,
+body.theme-light .navbar-text {
+  color: #000000;
+}
+
+
+
+/* Dark Theme */
+body.theme-dark .navbar {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-bottom: 1px solid #444;
+}
+body.theme-dark .navbar a,
+body.theme-dark .navbar-brand,
+body.theme-dark .navbar-text {
+  color: #d1d1d1;
+}
+
+/* Dracula Theme */
+body.theme-dracula .navbar {
+  background-color: #252940;
+  color: #f8f8f2;
+  border-bottom: 1px solid #6272a4;
+}
+body.theme-dracula .navbar a,
+body.theme-dracula .navbar-brand,
+body.theme-dracula .navbar-text {
+  color: #fb9df5;
+}
+
+/* Bash Theme */
+body.theme-bash .navbar {
+  background-color: #073642;
+  color: #93a1a1;
+  border-bottom: 1px solid #586e75;
+}
+body.theme-bash .navbar a,
+body.theme-bash .navbar-brand,
+body.theme-bash .navbar-text {
+  color: #00ff6a;
+}
+
+
+
+
+
+
+
+
+
+
+
+.theme-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.theme-selector label {
+  font-weight: 600;
+  color: inherit;
+}
+
+.theme-selector select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Add focus effect */
+.theme-selector select:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  border-color: #007bff;
+}
+
+/* Style for different states */
+body.theme-dark .theme-selector select {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.theme-dracula .theme-selector select {
+  background-color: #44475a;
+  color: #f8f8f2;
+  border: 1px solid #6272a4;
+}
+
+body.theme-bash .theme-selector select {
+  background-color: #073642;
+  color: #93a1a1;
+  border: 1px solid #586e75;
+}
+
+/* Button hover */
+.theme-selector select:hover {
+  background-color: #f1f1f1;
+}
+
+
+.difficulty-select {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.difficulty-select label {
+  font-weight: 600;
+  color: inherit;
+}
+
+.difficulty-select select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Add focus effect */
+.difficulty-select select:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  border-color: #007bff;
+}
+
+/* Style for different states */
+body.theme-dark .difficulty-select select {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.theme-dracula .difficulty-select select {
+  background-color: #44475a;
+  color: #f8f8f2;
+  border: 1px solid #6272a4;
+}
+
+body.theme-bash .difficulty-select select {
+  background-color: #073642;
+  color: #93a1a1;
+  border: 1px solid #586e75;
+}
+
+/* Button hover */
+.difficulty-select select:hover {
+  background-color: #f1f1f1;
 }

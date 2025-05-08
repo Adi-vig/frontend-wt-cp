@@ -1,49 +1,75 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../api/api';
+import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const RegistrationPage = ({ onRegister }) => {
+function RegistrationPage() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userLevel, setUserLevel] = useState('easy');
-  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleRegister = async () => {
-    try {
-      const response = await axios.post('/api/register', { email, password, userLevel });
-      if (response.data.success) {
-        onRegister(response.data.user);
-      } else {
-        setError('Registration failed');
-      }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    API.post('auth/register', { name, email, password })
+      .then(() => {
+        alert('Registration successful!');
+        navigate('/login');
+      })
+      .catch(error => {
+        console.error('Registration error:', error);
+        alert('Registration failed.');
+      });
   };
 
   return (
-    <div className="registration-container">
-      <h2>Register</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <select value={userLevel} onChange={(e) => setUserLevel(e.target.value)}>
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-      <button onClick={handleRegister}>Register</button>
-      {error && <p className="error">{error}</p>}
+    <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+      <div className="card" style={{ width: '30rem' }}>
+        <div className="card-body">
+          <h2 className="card-title text-center mb-4">Register</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label className="form-label">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter your name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Enter email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Enter password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button className="btn btn-primary w-100" type="submit">Register</button>
+          </form>
+          <div className="text-center mt-3">
+            <p>Already have an account? <a href="/login">Login here</a></p>
+          </div>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default RegistrationPage;
